@@ -1,0 +1,12 @@
+article {
+  & > div {
+    display: flex;
+    flex-direction: row;
+    &.odd .img {
+      order: 0;
+    }
+    &.odd .data {
+      order: 1;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.hexagon {
+  background-color: red;
+  border: 1px solid white;
+  opacity: 1;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.3;
+  }
+}

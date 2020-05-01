@@ -1,0 +1,15 @@
+<article>
+  <h3>{{title}}</h3>
+  <div [class.odd]="isOdd">
+    <div class="data">
+      <div class="hexagons">
+        <app-hexagon *ngFor="let hexagon of hexagons" [hexagon]="hexagon" (click)="onSelect(hexagon.id)"></app-hexagon>
+      </div>
+      <h4>Información</h4>
+      <div class="info">
+        <span *ngFor="let info of data"><strong>{{info.name}}: </strong><span>{{info.value}}</span></span>
+      </div>
+    </div>
+    <div class="img"></div>
+  </div>
+</article>
