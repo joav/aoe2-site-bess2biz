@@ -3,11 +3,16 @@
   <div [class.odd]="isOdd">
     <div class="data">
       <div class="hexagons">
-        <app-hexagon *ngFor="let hexagon of hexagons" [hexagon]="hexagon" (click)="onSelect(hexagon.id)"></app-hexagon>
+        <div class="hexagon-container"
+          *ngFor="let hexagon of hexagons; let i = index"
+          [class.first]="i == 0"
+          [class.up]="(i%5) % 2 == 0">
+          <div class="hexagon" [class.even]="i%2 != 0" (click)="onSelect(hexagon.id)"></div>
+        </div>
       </div>
       <h4>Información</h4>
       <div class="info">
-        <span *ngFor="let info of data"><strong>{{info.name}}: </strong><span>{{info.value}}</span></span>
+        <span class="value" *ngFor="let info of data"><strong>{{info.name}}: </strong><span>{{info.value}}</span></span>
       </div>
     </div>
     <div class="img"></div>

@@ -5,11 +5,15 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class AoeService {
-  private base = 'https://age-of-empires-2-api.herokuapp.com/';
+  private base = 'https://age-of-empires-2-api.herokuapp.com/api/v1/';
 
   constructor(private http:HttpClient){}
 
   getList<T>(type:'civilizations'|'units'|'structures'|'technologies'){
-    return this.http.get<T[]>(this.base + type);
+    return this.http.get<Resp<T>>(this.base + type);
   }
+}
+
+type Resp<T> = {
+  [key:string]: T[]
 }

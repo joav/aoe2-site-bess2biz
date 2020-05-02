@@ -11,14 +11,20 @@ import { InfoData } from '../models/info-data';
   styleUrls: ['./civilizations.component.scss']
 })
 export class CivilizationsComponent implements OnInit {
-  @Input() isOdd = false;
-
   civilizations:Civilization[] = [];
-  selected:Civilization;
+  hexagons:Hexagon[] = [];
+  data:InfoData[] = [];
 
   constructor(private aoe:AoeService) {
     this.aoe.getList<Civilization>('civilizations').subscribe(civilizations => {
-      this.civilizations = civilizations;
+      this.civilizations = civilizations.civilizations;
+
+      this.hexagons = this.civilizations.map(c => ({
+        id: c.id,
+        icon: ''
+      }));
+
+      console.log(this.civilizations)
       this.onSelect(this.civilizations[0].id);
     });
   }
@@ -27,30 +33,17 @@ export class CivilizationsComponent implements OnInit {
   }
 
   onSelect(id:number){
-    this.selected = this.civilizations.find(c => c.id == id);
-  }
-
-  get hexagons():Hexagon[]{
-    return this.civilizations.map(c => ({
-      id: c.id,
-      icon: ''
-    }));
-  }
-
-  get data():InfoData[]{
-    if(this.selected){
-      const data:InfoData[] = [];
-      for (const key in labels) {
-        if (labels.hasOwnProperty(key)) {
-          const label = labels[key];
-          data.push({
-            name: label,
-            value: (this.selected[key] instanceof Array)?this.selected[key].join(', '):this.selected[key]
-          } as InfoData);
-        }
+    const selected = this.civilizations.find(c => c.id == id);
+    const data = [];
+    for (const key in labels) {
+      if (labels.hasOwnProperty(key)) {
+        const label = labels[key];
+        data.push({
+          name: label,
+          value: (selected[key] instanceof Array)?selected[key].join(', '):selected[key]
+        } as InfoData);
       }
-    }else{
-      return [];
     }
+    this.data = data;
   }
 }

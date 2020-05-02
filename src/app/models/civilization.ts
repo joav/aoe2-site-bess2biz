@@ -10,11 +10,9 @@ export interface Civilization {
 }
 
 export const labels = {
-  name: 'Nombre',
-  expansion: 'Expansión',
-  army_type: 'Tipo de ejercito',
-  unique_unit: 'Unidades únicas',
-  unique_tech: 'Tecnologías únicas',
-  team_bonus: 'Bonus de equipo',
-  civilization_bonus: 'Bonus de civilización'
+  name: 'Name',
+  expansion: 'Expansion',
+  army_type: 'Army type',
+  team_bonus: 'Team bonus',
+  civilization_bonus: 'Civilization bonus'
 };
