@@ -9,9 +9,11 @@ import { InfoData } from "../models/info-data";
 })
 export class AoeItemComponent implements OnInit {
   @Input() title = '';
+  @Input() bigImage = '';
   @Input() isOdd = false;
   @Input() hexagons:Hexagon[] = [];
   @Input() data:InfoData[] = [];
+  @Input() hexagonsPerLine = 5;
 
   @Output() selected = new EventEmitter<number>();
 

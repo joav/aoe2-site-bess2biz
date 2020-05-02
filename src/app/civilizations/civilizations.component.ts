@@ -14,6 +14,7 @@ export class CivilizationsComponent implements OnInit {
   civilizations:Civilization[] = [];
   hexagons:Hexagon[] = [];
   data:InfoData[] = [];
+  bigImage = '';
 
   constructor(private aoe:AoeService) {
     this.aoe.getList<Civilization>('civilizations').subscribe(civilizations => {
@@ -21,7 +22,7 @@ export class CivilizationsComponent implements OnInit {
 
       this.hexagons = this.civilizations.map(c => ({
         id: c.id,
-        icon: ''
+        icon: this.aoe.getCivilizationImages(c.name).icon
       }));
 
       console.log(this.civilizations)
@@ -34,6 +35,7 @@ export class CivilizationsComponent implements OnInit {
 
   onSelect(id:number){
     const selected = this.civilizations.find(c => c.id == id);
+    this.bigImage = this.aoe.getCivilizationImages(selected.name).big;
     const data = [];
     for (const key in labels) {
       if (labels.hasOwnProperty(key)) {
