@@ -8,11 +8,3 @@ export interface Civilization {
   team_bonus:string;
   civilization_bonus:string[];
 }
-
-export const labels = {
-  name: 'Name',
-  expansion: 'Expansion',
-  army_type: 'Army type',
-  team_bonus: 'Team bonus',
-  civilization_bonus: 'Civilization bonus'
-};

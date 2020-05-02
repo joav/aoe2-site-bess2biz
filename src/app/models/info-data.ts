@@ -1,4 +1,4 @@
 export interface InfoData {
   name:string;
-  value:string;
+  value:string|number;
 }

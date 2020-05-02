@@ -19,7 +19,6 @@ export interface Unit {
   hit_points:number;
   range:string;
   attack:number;
-  Attack of the unit
   armor:string;
   attack_bonus:string[];
   armor_bonus:string[];

@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { AoeService } from '../aoe.service';
-import { Civilization, labels } from "../models/civilization";
+import { Civilization } from "../models/civilization";
 import { Hexagon } from '../models/hexagon';
 import { InfoData } from '../models/info-data';
+import { aoeResourceToInfoData } from "../utilities";
 
 @Component({
   selector: 'app-civilizations',
@@ -27,6 +28,16 @@ export class CivilizationsComponent implements OnInit {
 
       console.log(this.civilizations)
       this.onSelect(this.civilizations[0].id);
+      this.preloadImages();
+    });
+  }
+
+  async preloadImages(){
+    this.civilizations.forEach(async c => {
+      const imgIcon = new Image();
+      imgIcon.src = this.aoe.getCivilizationImages(c.name).icon;
+      const imgBig = new Image();
+      imgBig.src = this.aoe.getCivilizationImages(c.name).big;
     });
   }
 
@@ -36,16 +47,6 @@ export class CivilizationsComponent implements OnInit {
   onSelect(id:number){
     const selected = this.civilizations.find(c => c.id == id);
     this.bigImage = this.aoe.getCivilizationImages(selected.name).big;
-    const data = [];
-    for (const key in labels) {
-      if (labels.hasOwnProperty(key)) {
-        const label = labels[key];
-        data.push({
-          name: label,
-          value: (selected[key] instanceof Array)?selected[key].join(', '):selected[key]
-        } as InfoData);
-      }
-    }
-    this.data = data;
+    this.data = aoeResourceToInfoData(selected);
   }
 }

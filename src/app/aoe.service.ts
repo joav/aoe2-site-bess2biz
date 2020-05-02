@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-import data from '../assets/civilizations-img.json';
+import civilizations from '../assets/civilizations-img.json';
+import units from '../assets/units-img.json';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,19 @@ export class AoeService {
   }
 
   getCivilizationImages(civilization:string){
-    return (data as Object).hasOwnProperty(civilization)?
-      data[civilization] as CivilizationImages
+    return (civilizations as Object).hasOwnProperty(civilization)?
+      civilizations[civilization] as CivilizationImages
       :{icon: '', big: ''} as CivilizationImages;
+  }
+
+  getUnitImages(Unit:string){
+    return (units as Object).hasOwnProperty(Unit)?
+      units[Unit] as UnitImages
+      :{render: '', imgs: []} as UnitImages;
+  }
+
+  getUnitsNames(){
+    return Object.keys(units);
   }
 }
 
@@ -27,3 +38,5 @@ type Resp<T> = {
 }
 
 type CivilizationImages = {icon:string; big:string;};
+
+type UnitImages = {render:string; imgs:string[];};

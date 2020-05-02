@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { AoeService } from '../aoe.service';
-import { Civilization, labels } from "../models/civilization";
+import { Unit } from "../models/unit";
 import { Hexagon } from '../models/hexagon';
 import { InfoData } from '../models/info-data';
+import { aoeResourceToInfoData } from '../utilities';
+
 
 @Component({
   selector: 'app-units',
@@ -11,21 +13,22 @@ import { InfoData } from '../models/info-data';
   styleUrls: ['./units.component.scss']
 })
 export class UnitsComponent implements OnInit {
-  civilizations:Civilization[] = [];
+  units:Unit[] = [];
   hexagons:Hexagon[] = [];
   data:InfoData[] = [];
+  bigImage = '';
 
   constructor(private aoe:AoeService) {
-    this.aoe.getList<Civilization>('civilizations').subscribe(civilizations => {
-      this.civilizations = civilizations.civilizations;
+    this.aoe.getList<Unit>('units').subscribe(units => {
+      this.units = units.units.filter(u => this.aoe.getUnitsNames().includes(u.name));
 
-      this.hexagons = this.civilizations.map(c => ({
+      this.hexagons = this.units.map(c => ({
         id: c.id,
-        icon: ''
+        icon: this.aoe.getUnitImages(c.name).render
       }));
 
-      console.log(this.civilizations)
-      this.onSelect(this.civilizations[0].id);
+      console.log(this.units)
+      this.onSelect(this.units[0].id);
     });
   }
 
@@ -33,17 +36,25 @@ export class UnitsComponent implements OnInit {
   }
 
   onSelect(id:number){
-    const selected = this.civilizations.find(c => c.id == id);
-    const data = [];
-    for (const key in labels) {
-      if (labels.hasOwnProperty(key)) {
-        const label = labels[key];
-        data.push({
-          name: label,
-          value: (selected[key] instanceof Array)?selected[key].join(', '):selected[key]
-        } as InfoData);
-      }
-    }
-    this.data = data;
+    const selected = this.units.find(c => c.id == id);
+    const index = getRndInteger(0, this.aoe.getUnitImages(selected.name).imgs.length - 1);
+    console.log(selected.name, index);
+    this.bigImage = this.aoe.getUnitImages(selected.name).imgs[index];
+    this.data = aoeResourceToInfoData(selected);
   }
+
+  async preloadImages(){
+    this.units.forEach(async c => {
+      const imgIcon = new Image();
+      imgIcon.src = this.aoe.getUnitImages(c.name).render;
+      for (const img of this.aoe.getUnitImages(c.name).imgs) {
+        const imgBig = new Image();
+        imgBig.src = img;
+      }
+    });
+  }
+}
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
 }

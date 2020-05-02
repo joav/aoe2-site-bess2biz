@@ -19,6 +19,9 @@
         <span class="value" *ngFor="let info of data"><strong>{{info.name}}: </strong><span>{{info.value}}</span></span>
       </div>
     </div>
-    <div class="img" [ngStyle]="{backgroundImage: 'url('+bigImage+')'}"></div>
+    <div class="img" [class.animate]="animate" [class.small]="small">
+      <img class="new-big" [src]="newBigImage" (load)="newBigImageLoaded()">
+      <img class="big" [src]="bigImage">
+    </div>
   </div>
 </article>
