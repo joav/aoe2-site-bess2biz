@@ -23,6 +23,7 @@ export class CivilizationsComponent implements OnInit {
 
       this.hexagons = this.civilizations.map(c => ({
         id: c.id,
+        name: c.name,
         icon: this.aoe.getCivilizationImages(c.name).icon
       }));
 

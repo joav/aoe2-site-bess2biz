@@ -9,6 +9,7 @@ import units from '../assets/units-img.json';
 })
 export class AoeService {
   private base = 'https://age-of-empires-2-api.herokuapp.com/api/v1/';
+  private units = units;
 
   constructor(private http:HttpClient){}
 
@@ -23,13 +24,26 @@ export class AoeService {
   }
 
   getUnitImages(Unit:string){
-    return (units as Object).hasOwnProperty(Unit)?
-      units[Unit] as UnitImages
+    return (this.units as Object).hasOwnProperty(Unit)?
+      this.units[Unit] as UnitImages
       :{render: '', imgs: []} as UnitImages;
   }
 
+  getNextUnitImages(unit:string){
+    if((this.units as Object).hasOwnProperty(unit)){
+      let nextImg = this.units[unit].imgs[0];
+      if(this.units[unit].imgs.length > 1){
+        nextImg = this.units[unit].imgs.shift();
+        this.units[unit].imgs.push(nextImg);
+      }
+      return nextImg;
+    }else{
+      return '';
+    }
+  }
+
   getUnitsNames(){
-    return Object.keys(units);
+    return Object.keys(this.units);
   }
 }
 

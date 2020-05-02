@@ -8,10 +8,16 @@
           [class.first]="i == 0"
           [class.up]="(i%hexagonsPerLine) % 2 == 0">
           <div
-            class="hexagon"
-            [ngStyle]="{backgroundImage: 'url('+hexagon.icon+')'}"
-            (click)="onSelect(hexagon.id)"
-          ></div>
+            class="hexagon-outter"
+            [class.active]="currentSelected === 0 && i === 0 || hexagon.id === currentSelected">
+            <div
+              class="hexagon"
+              [title]="hexagon.name"
+              [class.active]="currentSelected === 0 && i === 0 || hexagon.id === currentSelected"
+              [ngStyle]="{backgroundImage: 'url('+hexagon.icon+')'}"
+              (click)="onSelect(hexagon.id)"
+            ></div>
+          </div>
         </div>
       </div>
       <h4>Información</h4>

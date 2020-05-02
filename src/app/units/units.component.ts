@@ -24,6 +24,7 @@ export class UnitsComponent implements OnInit {
 
       this.hexagons = this.units.map(c => ({
         id: c.id,
+        name: c.name,
         icon: this.aoe.getUnitImages(c.name).render
       }));
 
@@ -37,9 +38,7 @@ export class UnitsComponent implements OnInit {
 
   onSelect(id:number){
     const selected = this.units.find(c => c.id == id);
-    const index = getRndInteger(0, this.aoe.getUnitImages(selected.name).imgs.length - 1);
-    console.log(selected.name, index);
-    this.bigImage = this.aoe.getUnitImages(selected.name).imgs[index];
+    this.bigImage = this.aoe.getNextUnitImages(selected.name);
     this.data = aoeResourceToInfoData(selected);
   }
 

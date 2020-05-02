@@ -14,6 +14,9 @@ article {
     &.odd .data {
       order: 1;
     }
+    .data{
+      padding: 0 30px;
+    }
     .img {
       position: relative;
       &.small {
@@ -34,7 +37,7 @@ article {
       }
       &.animate {
         img {
-          transition: all 0.6s;
+          transition: all 0.6s ease;
         }
         img.big {
           opacity: 0;
@@ -74,19 +77,36 @@ article {
           &.up{
             margin-top: -$width2;
           }
-          .hexagon{
+          .hexagon-outter{
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            padding-top: 100%;
+            padding: 2.5% 0;
             box-sizing: border-box;
-            background-color: red;
             clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
-            transition: all 0.3s;
-            opacity: 1;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            &:hover{
-              opacity: 0.5;
+            background-color: #bbad58;
+            &.active, &:hover {
+              transition: background-color 0.3s ease;
+              background-color: #cc3939;
+            }
+            .hexagon{
+              width: 95%;
+              padding-top: 95%;
+              box-sizing: border-box;
+              background-color: #1a1309;
+              clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+              transition: all 0.3s ease;
+              opacity: 1;
+              background-position: center center;
+              background-repeat: no-repeat;
+              background-size: contain;
+              &:hover{
+                opacity: 0.5;
+              }
+              &.active {
+                opacity: 0.7;
+              }
             }
           }
         }
@@ -94,6 +114,7 @@ article {
     }
     h4 {
       align-self: flex-start;
+      margin: 20px 0;
     }
     .info {
       width: 100%;

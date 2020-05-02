@@ -36,6 +36,7 @@ export class AoeItemComponent implements OnInit {
 
   animate = false;
   toSelect = null;
+  currentSelected = 0;
 
   constructor() { }
 
@@ -44,6 +45,7 @@ export class AoeItemComponent implements OnInit {
   onSelect(id:number) {
     if(!this.animate){
       this.selected.emit(id);
+      this.currentSelected = id;
     }else{
       this.toSelect = id;
     }
@@ -60,6 +62,7 @@ export class AoeItemComponent implements OnInit {
             this.animate = false;
             if(this.toSelect){
               this.selected.emit(this.toSelect);
+              this.currentSelected = this.toSelect;
               this.toSelect = null;
             }
           }
