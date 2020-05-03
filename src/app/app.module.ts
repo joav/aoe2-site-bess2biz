@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { CivilizationsComponent } from './civilizations/civilizations.component'
 import { UnitsComponent } from './units/units.component';
 import { StructuresComponent } from './structures/structures.component';
 import { TechnologiesComponent } from './technologies/technologies.component';
+import { ModalFormComponent } from './modal-form/modal-form.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import { TechnologiesComponent } from './technologies/technologies.component';
     CivilizationsComponent,
     UnitsComponent,
     StructuresComponent,
-    TechnologiesComponent
+    TechnologiesComponent,
+    ModalFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

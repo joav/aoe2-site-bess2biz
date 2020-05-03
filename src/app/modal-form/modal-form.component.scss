@@ -1,0 +1,131 @@
+.box {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  background-color: rgba(66,66,66,0.85);
+  color: #565352;
+  animation: opacity 0.4s;
+  &.close {
+    animation: opacityrev 1s;
+    .content {
+      animation: moverev 1s ease-in-out;
+    }
+  }
+  .content {
+    margin: auto;
+    width: 530px;
+    text-align: center;
+    position: relative;
+    background-color: #fff;
+    padding: 40px;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: move 1s ease-in-out;
+    .close {
+      position: absolute;
+      cursor: pointer;
+      color: #f00;
+      top: 20px;
+      right: 20px;
+      font-size: 20px;
+      &:hover {
+        color: #f74949;
+      }
+    }
+    h2.title {
+      font-size: 1.5rem;
+    }
+    form {
+      padding: 10px;
+      min-height: 80px;
+      font-size: 1.2rem;
+      p {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 10px 0;
+        width: 90%;
+        input, textarea {
+          width: 60%;
+          padding: 5px 10px;
+          outline: none;
+        }
+        textarea {
+          resize: none;
+          height: 50px;
+        }
+      }
+      span {
+        display: block;
+        width: 100%;
+        &.errors{
+          margin-bottom: 10px;
+        }
+        .error{
+          color: #f00;
+          font-size: 0.9em;
+        }
+      }
+      .btns{
+        text-align: right;
+        button {
+          outline: none;
+          border: 2px solid #a69544;
+          background-color: #550000;
+          color: #f1e9d0;
+          cursor: pointer;
+          padding: 10px;
+          &:first-child {
+            margin-right: 15px;
+          }
+          &:hover {
+            background-color: #88010b;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes opacityrev {
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes move {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes moverev {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}

@@ -1,0 +1,21 @@
+button {
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  outline: none;
+  border: 2px solid #a69544;
+  background-color: #550000;
+  color: #f1e9d0;
+  cursor: pointer;
+  &:hover {
+    background-color: #88010b;
+  }
+}
+
+.container.modal {
+  max-height: 100vh;
+  overflow: hidden;
+}

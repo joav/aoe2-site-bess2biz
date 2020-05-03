@@ -66,7 +66,7 @@ export class AoeItemComponent implements OnInit {
               this.toSelect = null;
             }
           }
-        }, 600);
+        }, 1000);
       }
     }else{
       loadedImages.push(this.newBigImage);

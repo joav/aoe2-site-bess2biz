@@ -1,3 +1,7 @@
-<app-header></app-header>
-<app-trailer></app-trailer>
-<app-aoe-data></app-aoe-data>
+<div class="container" [class.modal]="showForm">
+  <app-header></app-header>
+  <app-trailer></app-trailer>
+  <app-aoe-data></app-aoe-data>
+  <button (click)="showForm = true">Show form</button>
+</div>
+<app-modal-form (close)="showForm = false" *ngIf="showForm"></app-modal-form>
