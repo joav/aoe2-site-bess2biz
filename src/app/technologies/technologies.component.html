@@ -1,1 +1,9 @@
-<p>technologies works!</p>
+<app-aoe-item
+  title="Technologies"
+  [hexagons]="hexagons"
+  [data]="data"
+  [bigImage]="bigImage"
+  (selected)="onSelect($event)"
+  [hexagonsPerLine]="10"
+  [small]="true"
+></app-aoe-item>

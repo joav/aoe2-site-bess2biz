@@ -29,7 +29,7 @@ export class UnitsComponent implements OnInit {
       }));
 
       this.onSelect(this.units[0].id);
-      //this.preloadImages();
+      this.preloadImages();
     });
   }
 

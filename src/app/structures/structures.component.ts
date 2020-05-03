@@ -28,7 +28,7 @@ export class StructuresComponent implements OnInit {
       }));
 
       this.onSelect(this.structures[0].id);
-      //this.preloadImages();
+      this.preloadImages();
     });
   }
 

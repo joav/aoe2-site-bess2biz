@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import civilizations from '../assets/civilizations-img.json';
 import units from '../assets/units-img.json';
 import structures from "../assets/structures-img.json";
+import technologies from "../assets/technologies-img.json";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AoeService {
   private base = 'https://age-of-empires-2-api.herokuapp.com/api/v1/';
   private units = units;
   private structures = structures;
+  private technologies = technologies;
 
   constructor(private http:HttpClient){}
 
@@ -70,6 +72,29 @@ export class AoeService {
   getStructuresNames(){
     return Object.keys(this.structures);
   }
+
+  getTechnologyImages(technology:string){
+    return (this.technologies as Object).hasOwnProperty(technology)?
+      this.technologies[technology] as TechnologyImages
+      :{render: '', imgs: []} as TechnologyImages;
+  }
+
+  getNextTechnologyImages(technology:string){
+    if((this.technologies as Object).hasOwnProperty(technology)){
+      let nextImg = this.technologies[technology].imgs[0];
+      if(this.technologies[technology].imgs.length > 1){
+        nextImg = this.technologies[technology].imgs.shift();
+        this.technologies[technology].imgs.push(nextImg);
+      }
+      return nextImg;
+    }else{
+      return '';
+    }
+  }
+
+  getTechnologiesNames(){
+    return Object.keys(this.technologies);
+  }
 }
 
 type Resp<T> = {
@@ -81,3 +106,5 @@ type CivilizationImages = {icon:string; big:string;};
 type UnitImages = {render:string; imgs:string[];};
 
 type StructureImages = {render:string; imgs:string[];};
+
+type TechnologyImages = {render:string; imgs:string[];};
