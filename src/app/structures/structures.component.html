@@ -1,1 +1,8 @@
-<p>structures works!</p>
+<app-aoe-item
+  title="Structures"
+  [hexagons]="hexagons"
+  [data]="data"
+  [bigImage]="bigImage"
+  (selected)="onSelect($event)"
+  [hexagonsPerLine]="10"
+></app-aoe-item>

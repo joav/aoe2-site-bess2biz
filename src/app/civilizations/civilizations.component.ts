@@ -27,7 +27,6 @@ export class CivilizationsComponent implements OnInit {
         icon: this.aoe.getCivilizationImages(c.name).icon
       }));
 
-      console.log(this.civilizations)
       this.onSelect(this.civilizations[0].id);
       this.preloadImages();
     });

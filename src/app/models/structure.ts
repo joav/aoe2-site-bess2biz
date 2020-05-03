@@ -1,0 +1,21 @@
+export interface Structure {
+  id:number;
+  name:string;
+  description:string;
+  expansion:string;
+  age:string;
+  cost:{
+    Wood:number;
+    Food:number;
+    Stone:number;
+    Gold:number;
+  };
+  build_time:number;
+  hit_points:number;
+  line_of_sight:number;
+  armor:string;
+  range:string;
+  reload_time:number;
+  attack:number;
+  special:string[];
+}

@@ -42,5 +42,5 @@ function clearStrValue(val:string){
 }
 
 function parseUnderScoreStr(str:string){
-  return str.substr(0,1).toUpperCase()+str.substr(1).replace('_',' ');
+  return str.substr(0,1).toUpperCase()+str.substr(1).replace(/\_/g,' ');
 }

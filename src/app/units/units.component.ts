@@ -28,8 +28,8 @@ export class UnitsComponent implements OnInit {
         icon: this.aoe.getUnitImages(c.name).render
       }));
 
-      console.log(this.units)
       this.onSelect(this.units[0].id);
+      //this.preloadImages();
     });
   }
 
